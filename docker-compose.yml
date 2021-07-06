@@ -1,0 +1,47 @@
+version: "3.0"
+
+services:
+
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        service_dir: api
+    image: tobydeh/moleculer-template:api
+    environment:
+      PORT: 3000
+    ports:
+      - "3333:3000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  service1:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        service_dir: service1
+    image: tobydeh/moleculer-template:service1
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongo-data:/data/db"
+
+  nats:
+    image: nats
+    ports:
+      - "4222:4222"
+
+volumes:
+  mongo-data:
+  redis-data:

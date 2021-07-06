@@ -1,0 +1,27 @@
+{
+  "name": "moleculer-template",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "docker:up": "docker compose up -d nats mongo",
+    "docker:down": "docker compose down",
+    "start": "tsc-watch --build --onSuccess \"concurrently -k npm:dev-*\"",
+    "dev-api": "NODE_PATH=api/dist node api/dist/main.js",
+    "dev-service1": "NODE_PATH=service1/dist node service1/dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tobydeh/moleculer-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tobydeh/moleculer-template/issues"
+  },
+  "homepage": "https://github.com/tobydeh/moleculer-template#readme",
+  "dependencies": {
+    "concurrently": "^6.2.0",
+    "tsc-watch": "^4.4.0"
+  }
+}
